@@ -6,8 +6,48 @@
 
 ## MyVector方法
 
-*   `push_back()`
-*   `pop_back()`
+*   成员函数
+    *   `operator=`
+    *   `assign`
+*   元素存取
+    *   `at`
+    *   `operator[]`
+    *   `front`
+    *   `back`
+    *   `data(C++11)`
+*   迭代器
+    *   `begin \ cbegin`
+    *   `end \ cend`
+    *   `rbegin \ crbegin`
+    *   `rend \ crend`
+
+*   容量
+    *   `empty`
+    *   `size`
+    *   `max_size`
+    *   `reserve`
+    *   `capacity`
+    *   `shrink_to_fit`
+    
+*   修改器
+    *   `clear`
+    *   `insert`
+    *   `emplace`
+    *   `erase`
+    *   `push_back`
+    *   `emplace_back`
+    *   `pop_back`
+    *   `resize`
+    *   `swap`
+    
+*   非成员函数
+    *   `operator==`
+    *   `operator!=`
+    *   `operator<` 
+    *   `operator<=`
+    *   `operator>`
+    *   `operator>=`
+
 
 ## MyVector成员变量
 
