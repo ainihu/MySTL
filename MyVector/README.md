@@ -51,9 +51,3 @@
     *   `operator<=`
     *   `operator>`
     *   `operator>=`
-
-
-## MyVector成员变量
-
-*   `capacity`
-*   `size`
