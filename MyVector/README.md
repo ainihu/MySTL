@@ -4,7 +4,11 @@
 ## MyVector设计
 > 由于对空间配置器不太熟悉所以就使用new了,new的内存空间申请也是使用的空间配置器,参考[cpprefernce.com](https://en.cppreference.com/w/cpp/container/vector)的vector的方法和成员变量设计vector
 
-## MyVector方法
+## MyVector方法和成员变量
+
+> 有些方法涉及到空间配置器和迭代器等,或者不会实现,但是会尽力实现写出来一个MyVector
+> 参考链接[cppreference](https://en.cppreference.com/w/cpp/container/vector)
+
 
 *   成员函数
     *   `operator=`
