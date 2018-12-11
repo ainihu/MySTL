@@ -1,5 +1,12 @@
-//
-// Created by pip on 12/9/18.
-//
+#include <iostream>
+#include <vector>
+#include "./MyVector/MyVector.h"
+
+using std::cout;
+using std::endl;
 
 
+int main() {
+    cout << "hello world" << endl;
+    return 0;
+}
