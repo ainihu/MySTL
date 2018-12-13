@@ -293,11 +293,13 @@ public:
         if (pos < 0 || pos >= this->_size)
             throw out_of_range("out of range");
         for (int i = 0; i < this->_size - 1; ++i) {
+            if (i == pos)
+                this->_data[i].~T(); // 显式调用析构函数,防止内存泄漏
             if (i >= pos)
                 this->_data[i] = this->_data[i + 1];
         }
         --this->_size;
-        this->_data[this->_size].~T(); // 显式调用析构函数,防止内存泄漏
+
     }
 
     // push_back
