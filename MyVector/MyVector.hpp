@@ -127,13 +127,6 @@ public:
         this->_capacity = 0;
     }
 
-    // operator <<, 链式编程
-    friend ostream &operator<<(ostream &out, MyVector &v) {
-        for (int i = 0; i < v._size; ++i) {
-            out << v[i] << " ";
-        }
-        return out;
-    }
 
 // 成员函数
     // operator=赋值语句
@@ -141,23 +134,23 @@ public:
         if (&v == this) // 如果是自己给自己赋值,直接return
             return *this;
 
-        if (v._data != NULL) // 释放原来的内存
-            delete[]v._data;
+        if (this->_data != NULL) // 释放原来的内存
+            delete[]this->_data;
 
         // 初始化,分配内存
-        v._data = new T[this->_capacity];
-        if (NULL == v._data) {// 申请内存失败
+        this->_data = new T[v._capacity];
+        if (NULL == this->_data) {// 申请内存失败
             v._size = 0;
             v._capacity = 0;
             return *this;
         }
-        v._size = this->_size;
-        v._capacity = this->_capacity;
+        this->_size = v._size;
+        this->_capacity = v._capacity;
 
 
         // 拷贝数据
         for (int i = 0; i < this->_size; ++i) {
-            v._data[i] = this->_data[i];
+            this->_data[i] = v._data[i];
         }
         return *this;
     }
@@ -304,6 +297,7 @@ public:
                 this->_data[i] = this->_data[i + 1];
         }
         --this->_size;
+        this->_data[this->_size].~T(); // 显式调用析构函数,防止内存泄漏
     }
 
     // push_back
@@ -319,9 +313,10 @@ public:
         if (this->_size == 0)
             throw out_of_range("out of range");
         this->_size--;
+        this->_data[this->_size].~T(); // 显式调用析构函数,防止内存泄漏
     }
 
-    // resize
+    // resize(int)
     void resize(int size){
         if(this->_size >= size)
             this->_size = size;
@@ -329,6 +324,7 @@ public:
             throw domain_error("size must less than _size");
     }
 
+    // resize(int, T)
     void resize(int size, T value){
         if (this->_size > size)
             this->_size = size;
@@ -341,6 +337,76 @@ public:
             }
             this->_size = size;
         }
+    }
+
+    // swap交换
+    void swap(MyVector & value){
+        if(&value == this)
+            return;
+        MyVector tmp = value;
+        value = *this;
+        *this = tmp;
+    }
+
+// operator
+    // operator <<, 链式编程
+    friend ostream &operator<<(ostream &out, MyVector &v) {
+        for (int i = 0; i < v._size; ++i) {
+            out << v[i] << " ";
+        }
+        return out;
+    }
+
+    // operator ==
+    bool operator==(const MyVector & value){
+        int i = 0;
+        if(value._size != this->_size)
+            return false;
+        for (i = 0; i < this->_size; ++i) {
+            if(this->_data[i] == value._data[i])
+                continue;
+            break;
+        }
+        return i == this->_size ? true: false;
+    }
+
+    // operator !=
+    bool operator!=(MyVector & value){
+        return !(*this == value);
+    }
+
+    // operator<
+    bool operator<(MyVector & value){
+        int i = 0;
+        int size = this->_size < value._size ? this->_size:value._size;
+        for (i = 0; i < size; ++i) {
+            if (this->_data[i] < value._data[i])
+                continue;
+            break;
+        }
+        return i == size ? true: false;
+    }
+
+    // operator<=
+    bool operator<=(MyVector & value){
+        int i = 0;
+        int size = this->_size < value._size ? this->_size : value._size;
+        for (i = 0; i < size; ++i) {
+            if (this->_data[i] <= value._data[i])
+                continue;
+            break;
+        }
+        return i == size ? true: false;
+    }
+
+    // operator>
+    bool operator>(MyVector & value){
+        return !(*this <= value);
+    }
+
+    // operator>=
+    bool operator>=(MyVector & value){
+        return !(*this < value);
     }
 };
 

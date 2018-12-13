@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "MyVector.hpp"
+#include "MyVector/MyVector.hpp"
 
 using std::cout;
 using std::endl;
@@ -47,5 +47,36 @@ int main() {
     s2.shrink_to_fit();
     s2.resize(4, 2);
     cout << "resize(int, T)" << s2 << endl;
+
+    cout << "before" << endl;
+    cout << "s1:" << s1 << endl;
+    cout << "s2:" << s2 << endl;
+    s2.swap(s1);
+    cout << "after" << endl;
+    cout << "s1:" << s1 << endl;
+    cout << "s2:" << s2 << endl;
+
+    s = s1;
+    cout << "operator *" << endl;
+    cout << "s:" << s << endl;
+    cout << "s1:" << s1 << endl;
+    cout << "s2:" << s2 << endl;
+    cout << "s == s1:" << (s == s1) << endl;
+    cout << "s != s1:" << (s != s1) << endl;
+    cout << "s1 == s2:" << (s1 == s2) << endl;
+    cout << "s1 != s2:" << (s1 != s2) << endl;
+
+
+    cout << "s < s1:" << (s < s1) << endl;
+    cout << "s <= s1:" << (s <= s1) << endl;
+    cout << "s1 < s2:" << (s1 < s2) << endl;
+    cout << "s1 <= s2:" << (s1 <= s2) << endl;
+
+
+    cout << "s > s1:" << (s > s1) << endl;
+    cout << "s >= s1:" << (s >= s1) << endl;
+    cout << "s1 > s2:" << (s1 > s2) << endl;
+    cout << "s1 >= s2:" << (s1 >= s2) << endl;
+
     return 0;
 }
